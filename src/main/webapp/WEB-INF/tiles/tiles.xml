@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+      "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+      "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- Base Define --> 	<!-- підстановка jsp -->
+	<definition name="base" template="/WEB-INF/tiles/classic.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/fragments/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/fragments/footer.jsp" />
+	</definition>
+	
+	<definition name = "*" extends="base"><!-- default  name = "home" a  name = "*" * - відповідає за перший крок після /views/{1}.jsp  якщо буде наприклад папка і jsp то буде "*/*" i views/{1}/{2}.jsp |  в контролері треба буде повертати н-в return andmin/page/ тому що 2 зірки-->
+	<put-attribute name="title" value="Page Title"/>
+	<put-attribute name = "body" value="/WEB-INF/views/{1}.jsp"/> <!-- default "/WEB-INF/views/home.jsp"/-->
+	</definition>
+	
+	<!--підстановка jsp сторінок який повертає наш сервелет (route)  -->
+	<definition name = "*/*" extends="base"><!-- default  name = "home" a  name = "*" * - відповідає за перший крок після /views/{1}.jsp  якщо буде наприклад папка і jsp то буде "*/*" i views/{1}/{2}.jsp |  в контролері треба буде повертати н-в return andmin/page/ тому що 2 зірки-->
+	<put-attribute name="title" value="Page Title"/>
+	<put-attribute name = "body" value="/WEB-INF/views/{1}/{2}.jsp"/> <!-- default "/WEB-INF/views/home.jsp"/-->
+	</definition>
+	
+		<definition name = "*/*/*" extends="base"><!-- default  name = "home" a  name = "*" * - відповідає за перший крок після /views/{1}.jsp  якщо буде наприклад папка і jsp то буде "*/*" i views/{1}/{2}.jsp |  в контролері треба буде повертати н-в return andmin/page/ тому що 2 зірки-->
+	<put-attribute name="title" value="Page Title"/>
+	<put-attribute name = "body" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/> <!-- default "/WEB-INF/views/home.jsp"/-->
+	</definition>
+	
+	<!--  <definition name = "error" template="/WEB-INF/views/404.js"/> -->
+	
+</tiles-definitions>
